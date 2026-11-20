@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20240513/MODEL/" expressionLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/" namespace="https://kie.org/dmn/_AA96FF0C-1252-44D5-B631-3D3A7A7CA19A" id="_FD1007A3-FD20-4BD6-8381-A58DE5608FA8" name="Credit Card Eligibility Validation" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0">
+  <itemDefinition id="_81222A9A-900D-448D-BF56-D2992F18AD07" name="EligibilityResult" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/">
+    <typeRef>string</typeRef>
+  </itemDefinition>
+  <itemDefinition id="_BE04C33A-9ACC-41F4-AC71-C6D984B76941" name="Applicant" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/">
+    <itemComponent id="_6A3718D7-588C-4ECD-9B79-BD97EF7EE5DE" name="student" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/">
+      <typeRef>boolean</typeRef>
+    </itemComponent>
+    <itemComponent id="_0A91D6D9-DA5A-4A0C-8127-57F106827B64" name="annualIncome" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+    <itemComponent id="_77A64739-6D8F-4CB4-B9FD-433ED9CD7B4F" name="creditScore" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+    <itemComponent id="_D7B4A5E8-548D-424A-B5C7-56184D9E6CDF" name="age" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <decision name="Eligibility Score Calculation" id="_6E225F27-0CE6-4BED-BBC1-B8A7AB8F332F">
+    <variable id="_B24E8E60-285D-4DA3-B492-E9A28BA99E8F" typeRef="number" name="Eligibility Score Calculation" />
+    <informationRequirement id="_B366E70F-2B15-4DDD-B81E-297E826AD7D1">
+      <requiredInput href="#_106A8407-FAFE-475D-AC19-1D382666749A" />
+    </informationRequirement>
+    <decisionTable id="_8C3A02E6-87BD-4968-9879-7FDB88D71BFC" typeRef="number" hitPolicy="UNIQUE" label="Eligibility Score Calculation">
+      <input id="_AABB5A45-2B24-4520-86F0-510D53F905BA">
+        <inputExpression id="_B47E4006-005B-4433-82EC-79A0184C6BF7" typeRef="boolean">
+          <text>Applicant.student</text>
+        </inputExpression>
+      </input>
+      <input id="_3DF7614E-6256-4765-8162-47A387114019">
+        <inputExpression id="_5078A294-5002-48FC-BAD5-A171C978ADE7" typeRef="number">
+          <text>Applicant.annualIncome</text>
+        </inputExpression>
+      </input>
+      <input id="_BCA3085D-3A6D-4C44-A72B-C03F8E68849E">
+        <inputExpression id="_503BADE5-994F-4086-9232-86A2339BF9BB" typeRef="number">
+          <text>Applicant.creditScore</text>
+        </inputExpression>
+      </input>
+      <input id="_547D294B-F127-47C1-AB3C-E2E81D566CB5">
+        <inputExpression id="_DF090480-7DE5-472D-A977-295CA386751F" typeRef="number">
+          <text>Applicant.age</text>
+        </inputExpression>
+      </input>
+      <output id="_47B09E3E-1BC7-4475-87F4-A216A33B3C1E" />
+      <annotation name="Annotations" />
+      <rule id="_DCAFCEED-D812-4641-AC54-32980BBF373A">
+        <inputEntry id="_5665F735-8298-42AB-A85E-882B2B8152A5">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_BCD0E391-38AB-4F03-97F2-D85A9ED3BC48">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_B8D1A437-6C86-4E47-B200-BD4C993321ED">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_1C774B04-223A-410F-8F57-FD8817B86AB1">
+          <text>&lt; 18</text>
+        </inputEntry>
+        <outputEntry id="_C541E326-E7F0-4B33-883D-3F6328F59298">
+          <text>0</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_7781D6A6-B1EC-4599-A7C7-CBD1BCE68BC8">
+        <inputEntry id="_D583B9FF-2310-4B8B-A8EC-ABA56B44D203">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_81526A04-A07C-4329-B80E-6B1AAE2B7795">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_AAFBA91A-9412-4A30-B4C3-861C69DB7642">
+          <text>&lt; 550</text>
+        </inputEntry>
+        <inputEntry id="_4244C6A8-2453-4AF6-8374-3B133987D393">
+          <text>&gt;= 18</text>
+        </inputEntry>
+        <outputEntry id="_95615640-5FB0-4241-B459-3678E506BA16">
+          <text>20</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_84FD58A1-2CF8-4400-98B8-28D078C35425">
+        <inputEntry id="_25497104-44D0-4BF2-B020-E4518CCE5448">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="_A82552B9-B115-4F92-B8C1-0181A5666E39">
+          <text>&lt; 20000</text>
+        </inputEntry>
+        <inputEntry id="_639B4CCA-33DF-4BB7-A4D4-92613C7984B8">
+          <text>[550..700]</text>
+        </inputEntry>
+        <inputEntry id="_93498047-830A-4136-A601-1782B8EFA3A7">
+          <text>&gt;= 18</text>
+        </inputEntry>
+        <outputEntry id="_3B9340F7-0C95-4F57-9806-F086D6496FF3">
+          <text>40</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_F793A9DA-3349-448B-9093-C457863A880F">
+        <inputEntry id="_3EC4B5C8-3352-4DD9-BE45-DB4297D42AF0">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="_5DDAEB86-3390-4FBC-B653-0251EB77E7FE">
+          <text>&gt;= 20000</text>
+        </inputEntry>
+        <inputEntry id="_B65648D7-B7D3-4CD6-90F7-707CDE8CD729">
+          <text>[550..700]</text>
+        </inputEntry>
+        <inputEntry id="_7AABD0F6-F338-41B7-81DA-DA8BAA8C31AB">
+          <text>&gt;= 18</text>
+        </inputEntry>
+        <outputEntry id="_A0814715-CA00-4B59-848B-205BEB30C74A">
+          <text>60</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_D9963B2D-22A5-4CAC-979E-5152D64F6AAC">
+        <inputEntry id="_C9D40E12-5A41-4670-9FC6-F7BF8288FF06">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="_64B2B972-617B-450C-B1BE-46B131B3F98B">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_55405D73-E9A6-4786-A06E-C42F08133A76">
+          <text>&gt;= 700</text>
+        </inputEntry>
+        <inputEntry id="_1732358D-5372-4F6D-890C-C52C151E4206">
+          <text>&gt;= 18</text>
+        </inputEntry>
+        <outputEntry id="_A45688AA-BD58-4612-805D-C4BA95AACC8C">
+          <text>80</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_46A11AEF-97E3-43F8-A7C9-88CB9F3F48F9">
+        <inputEntry id="_F39C8147-C76B-4D9C-A2FC-808BE7F6AB88">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="_213A0412-EA1C-4DF8-B220-845C0011E889">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_7CFFBA7D-6863-4114-84BE-FCCFB1D85045">
+          <text>&gt;= 550</text>
+        </inputEntry>
+        <inputEntry id="_EA0C79DC-134E-4DCB-8D3A-A6C180FE04EB">
+          <text>&gt;= 18</text>
+        </inputEntry>
+        <outputEntry id="_0700EEDA-9E46-4D8E-9256-C4F67E684AF4">
+          <text>70</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision name="IsEligible" id="_1DBB53DA-9D4A-4E75-BCAD-17AFE518CFAE">
+    <variable id="_96FAD5C1-B3B5-4425-9550-791B5E709781" typeRef="string" name="IsEligible" />
+    <informationRequirement id="_67435B5F-B9A1-4530-AA16-45B933520409">
+      <requiredDecision href="#_6E225F27-0CE6-4BED-BBC1-B8A7AB8F332F" />
+    </informationRequirement>
+    <literalExpression id="_DA35546F-6AB9-48BD-85B9-0765E153BE83" typeRef="string" label="IsEligible">
+      <text>if Eligibility Score Calculation &lt; 20 then &quot;rejected&quot;
+	else if Eligibility Score Calculation &lt; 60 then &quot;manual&quot;
+	else &quot;approved&quot;
+</text>
+    </literalExpression>
+  </decision>
+  <inputData name="Applicant" id="_106A8407-FAFE-475D-AC19-1D382666749A">
+    <variable name="Applicant" id="_19FC798D-C52A-4DF2-9478-5B0C56F716D9" typeRef="Applicant" />
+  </inputData>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_04472093-132B-4EAF-873C-04B8C03D908B" name="" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_8C3A02E6-87BD-4968-9879-7FDB88D71BFC">
+            <kie:width>60</kie:width>
+            <kie:width>123</kie:width>
+            <kie:width>154</kie:width>
+            <kie:width>148</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DA35546F-6AB9-48BD-85B9-0765E153BE83">
+            <kie:width>648</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_A14A5E68-D86F-41F6-8DCE-832BA8CA21C9" dmnElementRef="_106A8407-FAFE-475D-AC19-1D382666749A" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="420" y="280" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_FCC47BBF-2CB8-41A0-8123-3A1C263CD732" dmnElementRef="_6E225F27-0CE6-4BED-BBC1-B8A7AB8F332F" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="420" y="120" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_FD5CF23E-34D6-44D0-BFC9-C56C02E0229E" dmnElementRef="_1DBB53DA-9D4A-4E75-BCAD-17AFE518CFAE" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="420" y="-40" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_094F63E3-95F8-497D-A112-A63E5372222B-AUTO-TARGET" dmnElementRef="_B366E70F-2B15-4DDD-B81E-297E826AD7D1" sourceElement="_A14A5E68-D86F-41F6-8DCE-832BA8CA21C9" targetElement="_FCC47BBF-2CB8-41A0-8123-3A1C263CD732">
+        <di:waypoint x="500" y="320" />
+        <di:waypoint x="500" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_4A195416-369C-4EC5-BD5E-B637D28A4F64-AUTO-TARGET" dmnElementRef="_67435B5F-B9A1-4530-AA16-45B933520409" sourceElement="_FCC47BBF-2CB8-41A0-8123-3A1C263CD732" targetElement="_FD5CF23E-34D6-44D0-BFC9-C56C02E0229E">
+        <di:waypoint x="500" y="160" />
+        <di:waypoint x="500" y="0" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
