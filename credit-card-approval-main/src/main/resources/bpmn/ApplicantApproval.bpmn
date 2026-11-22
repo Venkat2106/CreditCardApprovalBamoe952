@@ -76,6 +76,9 @@
     </scriptTask>
     <userTask id="_0068F7F4-7BBE-460B-9F36-A7335800D34F" name="Manual Review Application">
       <extensionElements>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script>System.out.println(&quot;BAMOE V9.5.2&quot;);</drools:script>
+        </drools:onEntry-script>
         <drools:metaData name="customAsync">
           <drools:metaValue>false</drools:metaValue>
         </drools:metaData>
