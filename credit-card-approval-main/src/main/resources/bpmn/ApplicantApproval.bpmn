@@ -72,7 +72,8 @@
       </extensionElements>
       <incoming>_F6B242F8-10A4-4513-BC77-19C1077B0986</incoming>
       <outgoing>_76A543E7-41D9-4796-89B1-8F64A2179DC9</outgoing>
-      <script>System.out.println(&quot;Process started for: &quot;+applicant);</script>
+      <script>System.out.println(&quot;Process started for: &quot;+applicant);
+</script>
     </scriptTask>
     <userTask id="_0068F7F4-7BBE-460B-9F36-A7335800D34F" name="Manual Review Application">
       <extensionElements>
